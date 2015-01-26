@@ -121,7 +121,7 @@ class ImageUploadType extends AbstractType
             $configs['enabled_value'] = $image->isEnabled();
         }
         
-        //$this->session->set($view->vars['id'], $configs);
+        $this->session->set($view->vars['id'], $configs);
         $view->vars['configs'] = $configs;
     }
     
@@ -153,15 +153,17 @@ class ImageUploadType extends AbstractType
             'configs' => function (Options $options, $value) use ($defaultOptions, $defaultConfigs, $router){
                 $configs = array_replace_recursive($defaultOptions, $defaultConfigs, $value);
                 
-                $requiredConfigs = array('minWidth', 'minHeight', 'extensions', 'identifier');
+                //$requiredConfigs = array('minWidth', 'minHeight', 'extensions', 'identifier');
+                $requiredConfigs = array('minWidth', 'minHeight', 'extensions');
             
                 if (count(array_diff($requiredConfigs, array_keys($configs))) > 0){
                     throw new \InvalidArgumentException(sprintf('Some of the configs "%s" are missing', json_encode($requiredConfigs)));
                 }
                 
-                $configs['upload_url'] = $router->generate('thrace_media_image_upload', array(
-                    'config_identifier' => $configs['identifier']
-                ), true);
+                //$configs['upload_url'] = $router->generate('thrace_media_image_upload', array(
+                //    'config_identifier' => $configs['identifier']
+                //), true);
+                $configs['upload_url'] = $router->generate('thrace_media_image_upload', array(), true);
                 
                 $configs['render_url'] = $router->generate('thrace_media_image_render_temporary', array(), true);
                 

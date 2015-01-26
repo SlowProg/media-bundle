@@ -325,21 +325,6 @@ class ImageController extends ContainerAware
         }
     }
 
-//    /**
-//     * Gets Image configs
-//     *
-//     * @return array
-//     */
-//    protected function getConfigs()
-//    {
-//    	$session = $this->container->get('session');
-//    	if (!$configs = $session->get($this->getRequest()->get('thrace_media_id', false))){
-//            throw new \InvalidArgumentException('Request parameter "thrace_media_id" is missing!');
-//    	}
-//    	
-//    	return $configs;
-//    }
-
     /**
      * Gets Image configs
      *
@@ -347,12 +332,27 @@ class ImageController extends ContainerAware
      */
     protected function getConfigs()
     {
+    	$session = $this->container->get('session');
+    	if (!$configs = $session->get($this->getRequest()->get('thrace_media_id', false))){
+            throw new \InvalidArgumentException('Request parameter "thrace_media_id" is missing!');
+    	}
+    	
+    	return $configs;
+    }
+
+    /**
+     * Gets Image configs
+     *
+     * @return array
+     
+    protected function getConfigs()
+    {
     	if (!$configs = $this->container->getParameter($this->getRequest()->get('config_identifier', 'none'))){
             throw new \InvalidArgumentException('Configs does no exist!');
     	}
     	
     	return $configs;
-    }
+    }*/
     
         
     protected function getMimeType($content)
