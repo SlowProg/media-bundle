@@ -97,7 +97,7 @@ class ImageController extends ContainerAware
         
         $response = new Response($content);
         $response->headers->set('Accept-Ranges', 'bytes');
-        $response->headers->set('Content-Length', mb_strlen($content));
+        $response->headers->set('Content-Length', mb_strlen($content, '8bit'));
         $response->headers->set('Content-Type', $this->getMimeType($content));
         $response->expire();
         
@@ -122,7 +122,7 @@ class ImageController extends ContainerAware
         
         $response = new Response($content);
         $response->headers->set('Accept-Ranges', 'bytes');
-        $response->headers->set('Content-Length', mb_strlen($content));
+        $response->headers->set('Content-Length', mb_strlen($content, '8bit'));
         $response->headers->set('Content-Type', $this->getMimeType($content));
         $response->expire();
         
@@ -158,7 +158,7 @@ class ImageController extends ContainerAware
         $content = $filteredImage->get($imageManager->getExtension($filepath));
         $response->setContent($content);
         $response->headers->set('Accept-Ranges', 'bytes');
-        $response->headers->set('Content-Length', mb_strlen($content));
+        $response->headers->set('Content-Length', mb_strlen($content, '8bit'));
         $response->headers->set('Content-Type', $this->getMimeType($content));
         
         return $response;
@@ -190,7 +190,7 @@ class ImageController extends ContainerAware
          
         $response->setContent($content);
         $response->headers->set('Accept-Ranges', 'bytes');
-        $response->headers->set('Content-Length', mb_strlen($content));
+        $response->headers->set('Content-Length', mb_strlen($content, '8bit'));
         $response->headers->set('Content-Type', $this->getMimeType($content));
         
         return $response;
