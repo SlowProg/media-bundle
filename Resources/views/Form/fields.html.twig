@@ -138,7 +138,7 @@
         {{ block('thrace_media_upload_meta') }}
     </div>
     
-    <span class="thrace-image-upload" data-options="{{ configs|merge({'base_url': asset('/')})|json_encode }}" style="display:none"></span>
+    <span class="thrace-image-upload" data-options="{{ configs|merge({'base_url': asset('/', version=false)})|json_encode }}" style="display:none"></span>
 </div>
 {% endspaceless %}
 {% endblock thrace_image_upload_widget %}
@@ -448,7 +448,7 @@
             </div>
         </div>
                 
-        <span data-prototype="{{ form_widget(form.vars['prototype']) | e }}" data-options="{{ configs|merge({'base_url': asset('/')})|json_encode }}"
+        <span data-prototype="{{ form_widget(form.vars['prototype']) | e }}" data-options="{{ configs|merge({'base_url': asset('/', version=false)})|json_encode }}"
             class="thrace-multi-image-upload" style="display:none"></span>
         
         <div style="clear:both;"></div> 
